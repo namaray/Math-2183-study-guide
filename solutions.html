@@ -3,190 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Question 13 Solutions | Math 183</title>
-
+  <title>Step-by-Step Calculations | Question 13</title>
   <script>
     window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
-      },
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
       chtml: { scale: 1.1 }
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
   <style>
-    :root {
-      --primary: #2563eb;
-      --secondary: #64748b;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #0f172a;
-      --border: #e2e8f0;
-      --success: #16a34a;
-      --danger: #dc2626;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: var(--text);
-      background-color: var(--bg);
-      margin: 0;
-      padding: 2rem;
-    }
-
-    .container { max-width: 1000px; margin: 0 auto; }
-    
-    .back-link {
-        display: inline-block;
-        margin-bottom: 2rem;
-        color: var(--primary);
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    .solution-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 2.5rem;
-      margin-bottom: 3rem;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    }
-
-    h1 { font-size: 2.25rem; color: var(--text); margin-bottom: 0.5rem; }
-    h2 { color: var(--primary); font-size: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
-    
-    .step { margin-bottom: 1.5rem; }
-    .step-title { font-weight: 800; color: var(--secondary); text-transform: uppercase; font-size: 0.85rem; }
-
-    .matrix-box {
-      background: #f1f5f9;
-      padding: 1.5rem;
-      border-radius: 0.75rem;
-      margin: 1rem 0;
-      overflow-x: auto;
-    }
-
-    .status-badge {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        margin-top: 1rem;
-    }
-    .unique { background: #dcfce7; color: var(--success); }
-    .infinite { background: #fef9c3; color: #854d0e; }
-    .none { background: #fee2e2; color: var(--danger); }
-
-    mjx-container { font-weight: 700 !important; }
+    :root { --primary: #2563eb; --bg: #f8fafc; --text: #0f172a; --border: #e2e8f0; }
+    body { font-family: 'Inter', sans-serif; line-height: 1.6; background: var(--bg); color: var(--text); padding: 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .card { background: white; border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+    h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+    .calc-step { background: #f1f5f9; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #64748b; }
+    .math-block { overflow-x: auto; padding: 10px 0; }
+    .logic { font-weight: bold; color: #1e40af; }
   </style>
 </head>
 <body>
-
 <div class="container">
-    <a href="index.html" class="back-link">← Back to Main Guide</a>
-    
-    <h1>Solutions: Question 13</h1>
-    <p>Detailed Row Reduction and Rank Analysis for Linear Systems [cite: 49, 918-924].</p>
+  <h1>Detailed Solution Calculations</h1>
 
-    <section class="solution-card">
-        <h2>Problem 13 (i)</h2>
-        <p><b>System:</b> $x-y+2z=3$, $3x+y-2z=0$, $-x+2y-z=-1$[cite: 51].</p>
-        
-        <div class="step">
-            <span class="step-title">Step 1: Augmented Matrix</span>
-            <div class="matrix-box">
-                $$\left[\begin{array}{ccc|c} 1 & -1 & 2 & 3 \\ 3 & 1 & -2 & 0 \\ -1 & 2 & -1 & -1 \end{array}\right]$$
-            </div>
-        </div>
+  <section class="card">
+    <h2>Problem 13 (i)</h2>
+    <p><b>Initial Matrix:</b></p>
+    $$\left[\begin{array}{ccc|c} 1 & -1 & 2 & 3 \\ 3 & 1 & -2 & 0 \\ -1 & 2 & -1 & -1 \end{array}\right]$$
 
-        <div class="step">
-            <span class="step-title">Step 2: Row Operations</span>
-            <p>$R_2 \leftarrow R_2 - 3R_1$ and $R_3 \leftarrow R_3 + R_1$ [cite: 556, 931-932]:</p>
-            <div class="matrix-box">
-                $$\left[\begin{array}{ccc|c} 1 & -1 & 2 & 3 \\ 0 & 4 & -8 & -9 \\ 0 & 1 & 1 & 2 \end{array}\right]$$
-            </div>
-            <p>Swap $R_2, R_3$, then $R_3 \leftarrow R_3 - 4R_2$:</p>
-            <div class="matrix-box">
-                $$\left[\begin{array}{ccc|c} 1 & -1 & 2 & 3 \\ 0 & 1 & 1 & 2 \\ 0 & 0 & -12 & -17 \end{array}\right]$$
-            </div>
-        </div>
+    <div class="calc-step">
+      <b>Operation 1: $R_2 \leftarrow R_2 - 3R_1$</b><br>
+      $3 - 3(1) = 0$ | $1 - 3(-1) = 4$ | $-2 - 3(2) = -8$ | $0 - 3(3) = -9$<br>
+      <b>Operation 2: $R_3 \leftarrow R_3 + R_1$</b><br>
+      $-1 + 1 = 0$ | $2 + (-1) = 1$ | $-1 + 2 = 1$ | $-1 + 3 = 2$
+    </div>
 
-        <div class="step">
-            <span class="step-title">Step 3: Analysis</span>
-            <p>Rank(A) = 3, Rank(Ab) = 3, Unknowns(n) = 3[cite: 562, 570].</p>
-            <span class="status-badge unique">Unique Solution: x = 0.75, y = 0.58, z = 1.42</span>
-        </div>
-    </section>
+    <div class="calc-step">
+      <b>Operation 3: Swap $R_2 \leftrightarrow R_3$ then $R_3 \leftarrow R_3 - 4R_2$</b><br>
+      $4 - 4(1) = 0$ | $-8 - 4(1) = -12$ | $-9 - 4(2) = -17$
+    </div>
 
-    <section class="solution-card">
-        <h2>Problem 13 (ii)</h2>
-        <p><b>System:</b> $x-2y+z-w=0$, $2x-3y+2z+w=0$, $3x-2y+z-w=0$[cite: 58].</p>
-        
-        <div class="step">
-            <span class="step-title">Step 1: Augmented Matrix</span>
-            <div class="matrix-box">
-                $$\left[\begin{array}{cccc|c} 1 & -2 & 1 & -1 & 0 \\ 2 & -3 & 2 & 1 & 0 \\ 3 & -2 & 1 & -1 & 0 \end{array}\right]$$
-            </div>
-        </div>
+    <p class="logic">Rank(A) = 3, Rank(Ab) = 3, n = 3. Result: Unique Solution.</p>
+  </section>
 
-        <div class="step">
-            <span class="step-title">Step 2: Row-Echelon Form</span>
-            <p>$R_2 \leftarrow R_2 - 2R_1$ and $R_3 \leftarrow R_3 - 3R_1$:</p>
-            <div class="matrix-box">
-                $$\left[\begin{array}{cccc|c} 1 & -2 & 1 & -1 & 0 \\ 0 & 1 & 0 & 3 & 0 \\ 0 & 0 & -2 & -10 & 0 \end{array}\right]$$
-            </div>
-        </div>
+  <section class="card">
+    <h2>Problem 13 (ii)</h2>
+    <p><b>Initial Matrix:</b></p>
+    $$\left[\begin{array}{cccc|c} 1 & -2 & 1 & -1 & 0 \\ 2 & -3 & 2 & 1 & 0 \\ 3 & -2 & 1 & -1 & 0 \end{array}\right]$$
 
-        <div class="step">
-            <span class="step-title">Step 3: Analysis</span>
-            <p>Rank(A) = 3, Rank(Ab) = 3, Unknowns(n) = 4[cite: 535, 915].</p>
-            <span class="status-badge infinite">Infinitely Many Solutions (1 Free Variable)</span>
-        </div>
-    </section>
+    <div class="calc-step">
+      <b>Operation 1: $R_2 \leftarrow R_2 - 2R_1$</b><br>
+      $2 - 2(1) = 0$ | $-3 - 2(-2) = 1$ | $2 - 2(1) = 0$ | $1 - 2(-1) = 3$ | $0 - 2(0) = 0$<br>
+      <b>Operation 2: $R_3 \leftarrow R_3 - 3R_1$</b><br>
+      $3 - 3(1) = 0$ | $-2 - 3(-2) = 4$ | $1 - 3(1) = -2$ | $-1 - 3(-1) = 2$ | $0 - 3(0) = 0$
+    </div>
 
-    <section class="solution-card">
-        <h2>Problem 13 (iii)</h2>
-        <p><b>System:</b> $x_1+x_2+2x_3=8$, $-x_1-2x_2+3x_3=1$, $3x_1-7x_2+4x_3=10$ [cite: 53-55].</p>
-        
-        <div class="step">
-            <span class="step-title">Step 1: Row Reduction</span>
-            <p>After $R_2 \leftarrow R_2+R_1$ and $R_3 \leftarrow R_3 - 3R_1$:</p>
-            <div class="matrix-box">
-                $$\left[\begin{array}{ccc|c} 1 & 1 & 2 & 8 \\ 0 & -1 & 5 & 9 \\ 0 & 0 & -52 & -104 \end{array}\right]$$
-            </div>
-        </div>
+    <div class="calc-step">
+      <b>Operation 3: $R_3 \leftarrow R_3 - 4R_2$</b><br>
+      $4 - 4(1) = 0$ | $-2 - 4(0) = -2$ | $2 - 4(3) = -10$ | $0 - 4(0) = 0$
+    </div>
+    <p class="logic">Rank(A) = 3, Rank(Ab) = 3, n = 4. Result: Infinite Solutions (1 Free Variable).</p>
+  </section>
 
-        <div class="step">
-            <span class="step-title">Step 2: Analysis</span>
-            <p>Rank(A) = 3, Rank(Ab) = 3, n = 3[cite: 531, 917].</p>
-            <span class="status-badge unique">Unique Solution: x₁ = 3, x₂ = 1, x₃ = 2</span>
-        </div>
-    </section>
+  <section class="card">
+    <h2>Problem 13 (iii)</h2>
+    <p><b>Initial Matrix:</b></p>
+    $$\left[\begin{array}{ccc|c} 1 & 1 & 2 & 8 \\ -1 & -2 & 3 & 1 \\ 3 & -7 & 4 & 10 \end{array}\right]$$
 
-    <section class="solution-card">
-        <h2>Problem 13 (iv)</h2>
-        <p><b>System:</b> $3x_1+2x_2-x_3=-15$, $5x_1+3x_2+2x_3=0$, $3x_1+x_2+3x_3=11$, $6x_1-4x_2+2x_3=30$ [cite: 64-67].</p>
-        
-        <div class="step">
-            <span class="step-title">Step 1: Reduced Matrix</span>
-            <div class="matrix-box">
-                $$\left[\begin{array}{ccc|c} 3 & 2 & -1 & -15 \\ 0 & -1 & 11 & 75 \\ 0 & 0 & -7 & -49 \\ 0 & 0 & 0 & 48 \end{array}\right]$$
-            </div>
-        </div>
+    <div class="calc-step">
+      <b>Operation 1: $R_2 \leftarrow R_2 + R_1$</b><br>
+      $-1 + 1 = 0$ | $-2 + 1 = -1$ | $3 + 2 = 5$ | $1 + 8 = 9$<br>
+      <b>Operation 2: $R_3 \leftarrow R_3 - 3R_1$</b><br>
+      $3 - 3(1) = 0$ | $-7 - 3(1) = -10$ | $4 - 3(2) = -2$ | $10 - 3(8) = -14$
+    </div>
 
-        <div class="step">
-            <span class="step-title">Step 2: Analysis</span>
-            <p>Rank(A) = 3, Rank(Ab) = 4[cite: 527, 912].</p>
-            <span class="status-badge none">Inconsistent: No Solution</span>
-        </div>
-    </section>
+    <div class="calc-step">
+      <b>Operation 3: $R_3 \leftarrow R_3 - 10R_2$</b><br>
+      $-10 - 10(-1) = 0$ | $-2 - 10(5) = -52$ | $-14 - 10(9) = -104$
+    </div>
+    <p class="logic">Back-substitution: $-52x_3 = -104 \implies x_3 = 2$.</p>
+  </section>
+
+  <section class="card">
+    <h2>Problem 13 (iv)</h2>
+    <div class="calc-step">
+      <b>Initial Contradiction Check:</b><br>
+      $R_3 \leftarrow R_3 - R_1 \implies [0, -1, 4 | 26]$<br>
+      $R_4 \leftarrow R_4 - 2R_1 \implies [0, -8, 4 | 60]$<br>
+      Then $R_4 \leftarrow R_4 - 8R_3 \implies [0, 0, -28 | -148] \implies x_3 = 5.28$<br>
+      However, other row reductions yield different values for $x_3$.
+    </div>
+    <p class="logic">Rank(A) = 3, Rank(Ab) = 4. Result: No Solution (Inconsistent).</p>
+  </section>
 </div>
-
 </body>
 </html>

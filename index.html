@@ -1,194 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math 183 Study Guide | UIU</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #64748b;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --border: #e2e8f0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Math 183 Study Guide | UIU</title>
 
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background-color: var(--bg);
-            margin: 0;
-            display: flex;
-        }
+  <!-- ✅ MathJax v3 config (enables BOTH $...$ and $$...$$) -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      chtml: { scale: 1.1 }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-        nav {
-            width: 260px;
-            background: #1e293b;
-            color: white;
-            height: 100vh;
-            position: fixed;
-            padding: 2rem 1rem;
-        }
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #64748b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;          /* darker text */
+      --border: #e2e8f0;
+    }
 
-        nav h2 { font-size: 1.25rem; margin-bottom: 2rem; color: #38bdf8; }
-        nav a {
-            display: block;
-            color: #cbd5e1;
-            text-decoration: none;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 0.5rem;
-            transition: all 0.2s;
-        }
-        nav a:hover { background: #334155; color: white; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      margin: 0;
+      display: flex;
+    }
 
-        main {
-            margin-left: 280px;
-            padding: 3rem;
-            max-width: 900px;
-        }
+    nav {
+      width: 260px;
+      background: #1e293b;
+      color: white;
+      height: 100vh;
+      position: fixed;
+      padding: 2rem 1rem;
+    }
 
-        .header { margin-bottom: 3rem; }
-        .header h1 { font-size: 2.5rem; margin: 0; color: #0f172a; }
-        .header p { color: var(--secondary); font-size: 1.1rem; }
+    nav h2 { font-size: 1.25rem; margin-bottom: 2rem; color: #38bdf8; }
+    nav a {
+      display: block;
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+      transition: all 0.2s;
+    }
+    nav a:hover { background: #334155; color: white; }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
+    main {
+      margin-left: 280px;
+      padding: 3rem;
+      max-width: 900px;
+    }
 
-        h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-top: 0; }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-        }
-        th { background: #f1f5f9; text-align: left; padding: 1rem; border-bottom: 2px solid var(--border); }
-        td { padding: 1rem; border-bottom: 1px solid var(--border); }
+    .header { margin-bottom: 3rem; }
+    .header h1 { font-size: 2.5rem; margin: 0; color: #0f172a; }
+    .header p { color: var(--secondary); font-size: 1.1rem; }
 
-        .formula-box {
-            background: #f1f5f9;
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-        }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
 
-        .citation {
-            font-size: 0.8rem;
-            color: #64748b;
-            font-weight: bold;
-            margin-left: 5px;
-        }
+    h2 {
+      color: var(--primary);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+    }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            nav { width: 100%; height: auto; position: relative; padding: 1rem; }
-            main { margin-left: 0; padding: 1.5rem; }
-        }
-    </style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    th { background: #f1f5f9; text-align: left; padding: 1rem; border-bottom: 2px solid var(--border); }
+    td { padding: 1rem; border-bottom: 1px solid var(--border); }
+
+    .formula-box {
+      background: #eef2ff;
+      border-left: 6px solid var(--primary);
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 0 10px 10px 0;
+      color: var(--text);
+    }
+
+    .citation {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: #475569;
+      font-weight: 700;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* ✅ MathJax visibility */
+    mjx-container { color: var(--text) !important; font-weight: 700 !important; }
+    mjx-container[display="true"] { font-size: 1.25rem !important; margin: 1rem 0 !important; }
+    mjx-container:not([display="true"]) { font-size: 1.05em !important; }
+
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      nav { width: 100%; height: auto; position: relative; padding: 1rem; }
+      main { margin-left: 0; padding: 1.5rem; }
+      mjx-container[display="true"] { font-size: 1.15rem !important; }
+    }
+  </style>
 </head>
+
 <body>
+  <nav>
+    <h2>Study Guide</h2>
+    <a href="#de">Differential Equations</a>
+    <a href="#rank">Linear Systems & Rank</a>
+    <a href="#transform">Transformations</a>
+    <a href="#eigen">Eigenvalues</a>
+  </nav>
 
-    <nav>
-        <h2>Study Guide</h2>
-        <a href="#de">Differential Equations</a>
-        <a href="#rank">Linear Systems & Rank</a>
-        <a href="#transform">Transformations</a>
-        <a href="#eigen">Eigenvalues</a>
-    </nav>
+  <main>
+    <div class="header">
+      <h1>Math 183 Study Portal</h1>
+      <p>United International University | Calculus Review</p>
+    </div>
 
-    <main>
-        <div class="header">
-            <h1>Math 183 Study Portal</h1>
-            <p>United International University | Calculus Review</p>
-        </div>
+    <section id="de" class="card">
+      <h2>1. Differential Equations</h2>
 
-        <section id="de" class="card">
-            <h2>1. Differential Equations</h2>
-            <p>To solve equations of the form: 
-                <div class="formula-box">$$ay'' + by' + cy = g(x)$$ <span class="citation">[cite: 248]</span></div>
-            </p>
-            
-            <h3>Homogeneous Part (\(y_c\))</h3>
-            <p>Solve the auxiliary equation: $$am^2 + bm + c = 0$$ <span class="citation">[cite: 251, 257]</span></p>
-            <ul>
-                <li><strong>Distinct Real Roots:</strong> \(y = C_1e^{m_1x} + C_2e^{m_2x}\) <span class="citation">[cite: 265]</span></li>
-                <li><strong>Repeated Real Roots:</strong> \(y = C_1e^{m_1x} + C_2xe^{m_1x}\) <span class="citation">[cite: 266]</span></li>
-                <li><strong>Complex Roots (\(\alpha \pm i\beta\)):</strong> \(y = e^{\alpha x}(C_1 \cos \beta x + C_2 \sin \beta x)\) <span class="citation">[cite: 287]</span></li>
-            </ul>
+      <p>To solve equations of the form:</p>
+      <div class="formula-box">
+        $$ay'' + by' + cy = g(x)$$ <span class="citation">[cite: 248]</span>
+      </div>
 
-            
-            <h3>Non-Homogeneous Part (\(y_p\))</h3>
-            <p>General solution: \(y = y_c + y_p\) <span class="citation">[cite: 152]</span>. Use <b>Undetermined Coefficients</b> based on \(g(x)\) <span class="citation">[cite: 155, 157]</span>:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Shape of \(g(x)\)</th>
-                        <th>Guess for \(y_p\)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Constant (e.g., 6)</td><td>\(A\)</td></tr>
-                    <tr><td>Polynomial (e.g., \(30x+3\))</td><td>\(Ax + B\)</td></tr>
-                    <tr><td>Trig (\(\cos 2x\))</td><td>\(A \cos 2x + B \sin 2x\)</td></tr>
-                    <tr><td>Exponential (\(e^{-2x}\))</td><td>\(Ae^{-2x}\)</td></tr>
-                </tbody>
-            </table>
-        </section>
+      <h3>Homogeneous Part ($y_c$)</h3>
 
-        <section id="rank" class="card">
-            <h2>2. Linear Systems & Rank</h2>
-            <p>Consistency rules for \(Ax = b\) with \(n\) unknowns <span class="citation">[cite: 521, 907-911]</span>:</p>
-            
-            <div class="formula-box">
-                <ul>
-                    <li><b>Inconsistent (No Solution):</b> \(rank(A) \neq rank([A|b])\) <span class="citation">[cite: 527, 912]</span></li>
-                    <li><b>Consistent (Unique):</b> \(rank(A) = rank([A|b]) = n\) <span class="citation">[cite: 531, 917]</span></li>
-                    <li><b>Consistent (Infinite):</b> \(rank(A) = rank([A|b]) < n\) <span class="citation">[cite: 535, 539, 914-915]</span></li>
-                </ul>
-            </div>
-            
-                    </section>
+      <p>Solve the auxiliary equation:</p>
+      <div class="formula-box">
+        $$am^2 + bm + c = 0$$ <span class="citation">[cite: 251, 257]</span>
+      </div>
 
-        <section id="transform" class="card">
-            <h2>3. Matrix Transformations</h2>
-            <p>Standard matrices for \(\mathbb{R}^2\) transformations <span class="citation">[cite: 714, 870-884]</span>:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Transformation</th>
-                        <th>Standard Matrix</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Reflection (x-axis)</td><td>\(\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\)</td></tr>
-                    <tr><td>Reflection (y-axis)</td><td>\(\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}\)</td></tr>
-                    <tr><td>Reflection (\(y=x\))</td><td>\(\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\)</td></tr>
-                    <tr><td>Rotation (90° Clockwise)</td><td>\(\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}\)</td></tr>
-                    <tr><td>Enlargement (factor \(k\))</td><td>\(\begin{bmatrix} k & 0 \\ 0 & k \end{bmatrix}\)</td></tr>
-                </tbody>
-            </table>
-        </section>
+      <ul>
+        <li>
+          <strong>Distinct Real Roots:</strong>
+          $y = C_1e^{m_1x} + C_2e^{m_2x}$
+          <span class="citation">[cite: 265]</span>
+        </li>
+        <li>
+          <strong>Repeated Real Roots:</strong>
+          $y = C_1e^{m_1x} + C_2xe^{m_1x}$
+          <span class="citation">[cite: 266]</span>
+        </li>
+        <li>
+          <strong>Complex Roots ($\alpha \pm i\beta$):</strong>
+          $y = e^{\alpha x}(C_1 \cos \beta x + C_2 \sin \beta x)$
+          <span class="citation">[cite: 287]</span>
+        </li>
+      </ul>
 
-        <section id="eigen" class="card">
-            <h2>4. Eigenvalues & Trace</h2>
-            <p>Solve \(\det(A - \lambda I) = 0\) to find \(\lambda\) <span class="citation">[cite: 129, 134]</span>.</p>
-            <div class="formula-box">
-                <b>Trace Relationship:</b> \(tr(A) = \lambda_1 + \lambda_2\) <br>
-                <b>Determinant Relationship:</b> \(\det(A) = \lambda_1 \cdot \lambda_2\) <span class="citation">[cite: 135]</span>
-            </div>
-        </section>
-    </main>
+      <h3>Non-Homogeneous Part ($y_p$)</h3>
 
+      <p>
+        General solution: $y = y_c + y_p$ <span class="citation">[cite: 152]</span>.
+        Use <b>Undetermined Coefficients</b> based on $g(x)$
+        <span class="citation">[cite: 155, 157]</span>.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Shape of $g(x)$</th>
+            <th>Guess for $y_p$</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Constant (e.g., $6$)</td><td>$A$</td></tr>
+          <tr><td>Polynomial (e.g., $30x+3$)</td><td>$Ax + B$</td></tr>
+          <tr><td>Trig ($\cos 2x$)</td><td>$A \cos 2x + B \sin 2x$</td></tr>
+          <tr><td>Exponential ($e^{-2x}$)</td><td>$Ae^{-2x}$</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="rank" class="card">
+      <h2>2. Linear Systems & Rank</h2>
+      <p>Consistency rules for $Ax=b$ with $n$ unknowns <span class="citation">[cite: 521, 907-911]</span>:</p>
+
+      <div class="formula-box">
+        <ul>
+          <li><b>Inconsistent (No Solution):</b> $rank(A) \ne rank([A|b])$ <span class="citation">[cite: 527, 912]</span></li>
+          <li><b>Consistent (Unique):</b> $rank(A) = rank([A|b]) = n$ <span class="citation">[cite: 531, 917]</span></li>
+          <li><b>Consistent (Infinite):</b> $rank(A) = rank([A|b]) &lt; n$ <span class="citation">[cite: 535, 539, 914-915]</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="transform" class="card">
+      <h2>3. Matrix Transformations</h2>
+      <p>Standard matrices for $\mathbb{R}^2$ transformations <span class="citation">[cite: 714, 870-884]</span>:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Transformation</th>
+            <th>Standard Matrix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Reflection (x-axis)</td><td>$\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}$</td></tr>
+          <tr><td>Reflection (y-axis)</td><td>$\begin{bmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}$</td></tr>
+          <tr><td>Reflection ($y=x$)</td><td>$\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}$</td></tr>
+          <tr><td>Rotation (90° Clockwise)</td><td>$\begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix}$</td></tr>
+          <tr><td>Enlargement (factor $k$)</td><td>$\begin{bmatrix} k &amp; 0 \\ 0 &amp; k \end{bmatrix}$</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="eigen" class="card">
+      <h2>4. Eigenvalues & Trace</h2>
+      <p>Solve $\det(A - \lambda I)=0$ to find $\lambda$ <span class="citation">[cite: 129, 134]</span>.</p>
+
+      <div class="formula-box">
+        <b>Trace Relationship:</b> $tr(A) = \lambda_1 + \lambda_2$ <br />
+        <b>Determinant Relationship:</b> $\det(A) = \lambda_1 \cdot \lambda_2$
+        <span class="citation">[cite: 135]</span>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

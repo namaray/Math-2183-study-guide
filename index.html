@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math 183 Study Guide | UIU</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --primary: #2563eb;
@@ -23,7 +25,6 @@
             display: flex;
         }
 
-        /* Sidebar Navigation */
         nav {
             width: 260px;
             background: #1e293b;
@@ -45,7 +46,6 @@
         }
         nav a:hover { background: #334155; color: white; }
 
-        /* Main Content Area */
         main {
             margin-left: 280px;
             padding: 3rem;
@@ -65,7 +65,7 @@
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
         }
 
-        h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+        h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-top: 0; }
         
         table {
             width: 100%;
@@ -76,26 +76,23 @@
         td { padding: 1rem; border-bottom: 1px solid var(--border); }
 
         .formula-box {
-            background: #f8fafc;
+            background: #f1f5f9;
             border-left: 4px solid var(--primary);
-            padding: 1rem;
+            padding: 1.5rem;
             margin: 1rem 0;
-            font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 0.95rem;
+            border-radius: 0 8px 8px 0;
         }
 
         .citation {
-            font-size: 0.75rem;
-            color: var(--secondary);
-            background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-left: 4px;
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: bold;
+            margin-left: 5px;
         }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            nav { width: 100%; height: auto; position: relative; }
+            nav { width: 100%; height: auto; position: relative; padding: 1rem; }
             main { margin-left: 0; padding: 1.5rem; }
         }
     </style>
@@ -103,7 +100,7 @@
 <body>
 
     <nav>
-        <h2>Math 183 Guide</h2>
+        <h2>Study Guide</h2>
         <a href="#de">Differential Equations</a>
         <a href="#rank">Linear Systems & Rank</a>
         <a href="#transform">Transformations</a>
@@ -112,75 +109,84 @@
 
     <main>
         <div class="header">
-            <h1>Calculus Study Portal</h1>
-            <p>United International University | Fall 2025 Review</p>
+            <h1>Math 183 Study Portal</h1>
+            <p>United International University | Calculus Review</p>
         </div>
 
         <section id="de" class="card">
-            <h2>1. Differential Equations (Constant Coefficients)</h2>
-            <p>To solve equations of the form $$ay'' + by' + cy = g(x)$$:</p>
+            <h2>1. Differential Equations</h2>
+            <p>To solve equations of the form: 
+                <div class="formula-box">$$ay'' + by' + cy = g(x)$$ <span class="citation">[cite: 248]</span></div>
+            </p>
             
-            <h3>Homogeneous Part ($y_c$)</h3>
-            <p>Solve the auxiliary equation: $$am^2 + bm + c = 0$$[cite: 251, 257].</p>
+            <h3>Homogeneous Part (\(y_c\))</h3>
+            <p>Solve the auxiliary equation: $$am^2 + bm + c = 0$$ <span class="citation">[cite: 251, 257]</span></p>
             <ul>
-                <li><strong>Distinct Real Roots:</strong> $y = C_1e^{m_1x} + C_2e^{m_2x}$[cite: 265].</li>
-                <li><strong>Repeated Real Roots:</strong> $y = C_1e^{m_1x} + C_2xe^{m_1x}$[cite: 266].</li>
-                <li><strong>Complex Roots:</strong> $y = e^{\alpha x}(C_1 \cos \beta x + C_2 \sin \beta x)$[cite: 287].</li>
+                <li><strong>Distinct Real Roots:</strong> \(y = C_1e^{m_1x} + C_2e^{m_2x}\) <span class="citation">[cite: 265]</span></li>
+                <li><strong>Repeated Real Roots:</strong> \(y = C_1e^{m_1x} + C_2xe^{m_1x}\) <span class="citation">[cite: 266]</span></li>
+                <li><strong>Complex Roots (\(\alpha \pm i\beta\)):</strong> \(y = e^{\alpha x}(C_1 \cos \beta x + C_2 \sin \beta x)\) <span class="citation">[cite: 287]</span></li>
             </ul>
 
             
-            <h3>Non-Homogeneous Part ($y_p$)</h3>
-            <p>The general solution is $y = y_c + y_p$[cite: 152]. Use the method of undetermined coefficients for $y_p$ based on $g(x)$[cite: 155, 157]:</p>
+            <h3>Non-Homogeneous Part (\(y_p\))</h3>
+            <p>General solution: \(y = y_c + y_p\) <span class="citation">[cite: 152]</span>. Use <b>Undetermined Coefficients</b> based on \(g(x)\) <span class="citation">[cite: 155, 157]</span>:</p>
             <table>
                 <thead>
                     <tr>
-                        <th>$g(x)$ Form</th>
-                        <th>Trial $y_p$ Guess</th>
+                        <th>Shape of \(g(x)\)</th>
+                        <th>Guess for \(y_p\)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Constant (1)</td><td>$A$</td></tr>
-                    <tr><td>$5x+7$</td><td>$Ax+B$</td></tr>
-                    <tr><td>$\sin 4x$ / $\cos 4x$</td><td>$A \cos 4x + B \sin 4x$</td></tr>
-                    <tr><td>$e^{5x}$</td><td>$Ae^{5x}$</td></tr>
+                    <tr><td>Constant (e.g., 6)</td><td>\(A\)</td></tr>
+                    <tr><td>Polynomial (e.g., \(30x+3\))</td><td>\(Ax + B\)</td></tr>
+                    <tr><td>Trig (\(\cos 2x\))</td><td>\(A \cos 2x + B \sin 2x\)</td></tr>
+                    <tr><td>Exponential (\(e^{-2x}\))</td><td>\(Ae^{-2x}\)</td></tr>
                 </tbody>
             </table>
         </section>
 
         <section id="rank" class="card">
-            <h2>2. Linear Systems and Matrix Rank</h2>
-            <p>Analyze $Ax = b$ by comparing $rank(A)$ and $rank([A|b])$ [cite: 521, 907-911].</p>
+            <h2>2. Linear Systems & Rank</h2>
+            <p>Consistency rules for \(Ax = b\) with \(n\) unknowns <span class="citation">[cite: 521, 907-911]</span>:</p>
             
             <div class="formula-box">
-                • <b>Inconsistent:</b> $rank(A) \neq rank([A|b])$[cite: 524, 912].<br>
-                • <b>Unique:</b> $rank(A) = rank([A|b]) = n$[cite: 531, 917].<br>
-                • <b>Infinite:</b> $rank(A) = rank([A|b]) < n$[cite: 535, 915].
+                <ul>
+                    <li><b>Inconsistent (No Solution):</b> \(rank(A) \neq rank([A|b])\) <span class="citation">[cite: 527, 912]</span></li>
+                    <li><b>Consistent (Unique):</b> \(rank(A) = rank([A|b]) = n\) <span class="citation">[cite: 531, 917]</span></li>
+                    <li><b>Consistent (Infinite):</b> \(rank(A) = rank([A|b]) < n\) <span class="citation">[cite: 535, 539, 914-915]</span></li>
+                </ul>
             </div>
             
                     </section>
 
         <section id="transform" class="card">
             <h2>3. Matrix Transformations</h2>
-            <p>Standard matrices for mapping $T: \mathbb{R}^2 \to \mathbb{R}^2$ [cite: 714, 870-884].</p>
+            <p>Standard matrices for \(\mathbb{R}^2\) transformations <span class="citation">[cite: 714, 870-884]</span>:</p>
             <table>
-                <tr>
-                    <th>Type</th>
-                    <th>Standard Matrix</th>
-                </tr>
-                <tr><td>Reflect x-axis</td><td>[1, 0; 0, -1]</td></tr>
-                <tr><td>Reflect y-axis</td><td>[-1, 0; 0, 1]</td></tr>
-                <tr><td>Rotation 90° CCW</td><td>[0, -1; 1, 0]</td></tr>
-                <tr><td>Enlargement (k)</td><td>[k, 0; 0, k]</td></tr>
+                <thead>
+                    <tr>
+                        <th>Transformation</th>
+                        <th>Standard Matrix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Reflection (x-axis)</td><td>\(\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\)</td></tr>
+                    <tr><td>Reflection (y-axis)</td><td>\(\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}\)</td></tr>
+                    <tr><td>Reflection (\(y=x\))</td><td>\(\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\)</td></tr>
+                    <tr><td>Rotation (90° Clockwise)</td><td>\(\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}\)</td></tr>
+                    <tr><td>Enlargement (factor \(k\))</td><td>\(\begin{bmatrix} k & 0 \\ 0 & k \end{bmatrix}\)</td></tr>
+                </tbody>
             </table>
         </section>
 
         <section id="eigen" class="card">
-            <h2>4. Eigenvalues & Eigenvectors</h2>
-            <p>Find $\lambda$ by solving $\det(A - \lambda I) = 0$[cite: 129, 134].</p>
-            <ul>
-                <li>$tr(A) = \sum \lambda_i$[cite: 135].</li>
-                <li>$\det(A) = \prod \lambda_i$[cite: 135].</li>
-            </ul>
+            <h2>4. Eigenvalues & Trace</h2>
+            <p>Solve \(\det(A - \lambda I) = 0\) to find \(\lambda\) <span class="citation">[cite: 129, 134]</span>.</p>
+            <div class="formula-box">
+                <b>Trace Relationship:</b> \(tr(A) = \lambda_1 + \lambda_2\) <br>
+                <b>Determinant Relationship:</b> \(\det(A) = \lambda_1 \cdot \lambda_2\) <span class="citation">[cite: 135]</span>
+            </div>
         </section>
     </main>
 

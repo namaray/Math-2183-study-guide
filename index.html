@@ -3,108 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math 183 Study Guide - UIU</title>
+    <title>Math 183 Study Guide | UIU</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        h1, h2, h3 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .section { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        table { border-collapse: collapse; width: 100%; margin: 20px 0; background: #fff; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #3498db; color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        .formula { background: #eef; padding: 10px; border-left: 4px solid #3498db; font-family: 'Courier New', Courier, monospace; margin: 10px 0; }
-        .cite { font-size: 0.85em; color: #7f8c8d; vertical-align: super; }
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 260px;
+            background: #1e293b;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding: 2rem 1rem;
+        }
+
+        nav h2 { font-size: 1.25rem; margin-bottom: 2rem; color: #38bdf8; }
+        nav a {
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+        nav a:hover { background: #334155; color: white; }
+
+        /* Main Content Area */
+        main {
+            margin-left: 280px;
+            padding: 3rem;
+            max-width: 900px;
+        }
+
+        .header { margin-bottom: 3rem; }
+        .header h1 { font-size: 2.5rem; margin: 0; color: #0f172a; }
+        .header p { color: var(--secondary); font-size: 1.1rem; }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th { background: #f1f5f9; text-align: left; padding: 1rem; border-bottom: 2px solid var(--border); }
+        td { padding: 1rem; border-bottom: 1px solid var(--border); }
+
+        .formula-box {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 0.95rem;
+        }
+
+        .citation {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: relative; }
+            main { margin-left: 0; padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>Math 183: Calculus Comprehensive Guide</h1>
-    <p><em>Course Code: Math 183 | [cite_start]Institution: United International University [cite: 3, 9]</em></p>
+    <nav>
+        <h2>Math 183 Guide</h2>
+        <a href="#de">Differential Equations</a>
+        <a href="#rank">Linear Systems & Rank</a>
+        <a href="#transform">Transformations</a>
+        <a href="#eigen">Eigenvalues</a>
+    </nav>
 
-    <div class="section">
-        <h2>1. Differential Equations (Constant Coefficients)</h2>
-        [cite_start]<p>To solve equations of the form $ay'' + by' + cy = g(x)$[cite: 248]:</p>
-        
-        <h3>Homogeneous Part ($y_c$)</h3>
-        [cite_start]<p>Solve the auxiliary equation: $am^2 + bm + c = 0$[cite: 251, 257].</p>
-        <ul>
-            [cite_start]<li><strong>Distinct Real Roots:</strong> $y = C_1e^{m_1x} + C_2e^{m_2x}$[cite: 265].</li>
-            [cite_start]<li><strong>Repeated Real Roots:</strong> $y = C_1e^{m_1x} + C_2xe^{m_1x}$[cite: 266].</li>
-            [cite_start]<li><strong>Complex Roots ($\alpha \pm i\beta$):</strong> $y = e^{\alpha x}(C_1 \cos \beta x + C_2 \sin \beta x)$[cite: 287].</li>
-        </ul>
+    <main>
+        <div class="header">
+            <h1>Calculus Study Portal</h1>
+            <p>United International University | Fall 2025 Review</p>
+        </div>
 
-        <h3>Non-Homogeneous Part ($y_p$)</h3>
-        [cite_start]<p>The general solution is $y = y_c + y_p$[cite: 152]. [cite_start]Use the method of undetermined coefficients for $y_p$ based on $g(x)$[cite: 155, 157]:</p>
-        <table>
-            <tr>
-                <th>Type of $g(x)$</th>
-                <th>Trial Form of $y_p$</th>
-            </tr>
-            <tr>
-                <td>Constant (e.g., 1)</td>
-                [cite_start]<td>$A$ [cite: 158]</td>
-            </tr>
-            <tr>
-                <td>Linear (e.g., $5x+7$)</td>
-                [cite_start]<td>$Ax + B$ [cite: 158]</td>
-            </tr>
-            <tr>
-                <td>Trig ($\sin 4x$ or $\cos 4x$)</td>
-                [cite_start]<td>$A \cos 4x + B \sin 4x$ [cite: 158]</td>
-            </tr>
-            <tr>
-                <td>Exponential ($e^{5x}$)</td>
-                [cite_start]<td>$Ae^{5x}$ [cite: 158]</td>
-            </tr>
-        </ul>
-    </div>
+        <section id="de" class="card">
+            <h2>1. Differential Equations (Constant Coefficients)</h2>
+            <p>To solve equations of the form $$ay'' + by' + cy = g(x)$$:</p>
+            
+            <h3>Homogeneous Part ($y_c$)</h3>
+            <p>Solve the auxiliary equation: $$am^2 + bm + c = 0$$[cite: 251, 257].</p>
+            <ul>
+                <li><strong>Distinct Real Roots:</strong> $y = C_1e^{m_1x} + C_2e^{m_2x}$[cite: 265].</li>
+                <li><strong>Repeated Real Roots:</strong> $y = C_1e^{m_1x} + C_2xe^{m_1x}$[cite: 266].</li>
+                <li><strong>Complex Roots:</strong> $y = e^{\alpha x}(C_1 \cos \beta x + C_2 \sin \beta x)$[cite: 287].</li>
+            </ul>
 
-    <div class="section">
-        <h2>2. Linear Systems and Rank</h2>
-        [cite_start]<p>Consistency is determined by comparing the rank of the coefficient matrix ($r_A$) and the augmented matrix ($r_{Ab}$) against the number of variables ($n$) [cite: 521, 907-910].</p>
-        <table>
-            <tr>
-                <th>Condition</th>
-                <th>Nature of Solution</th>
-            </tr>
-            <tr>
-                <td>$rank(A) \neq rank([A|b])$</td>
-                [cite_start]<td>No Solution (Inconsistent) [cite: 524, 542, 912]</td>
-            </tr>
-            <tr>
-                <td>$rank(A) = rank([A|b]) = n$</td>
-                [cite_start]<td>Unique Solution [cite: 529, 542, 917]</td>
-            </tr>
-            <tr>
-                <td>$rank(A) = rank([A|b]) < n$</td>
-                [cite_start]<td>Infinitely Many Solutions [cite: 533, 542, 914]</td>
-            </tr>
-        </table>
-        [cite_start]<p><strong>Note:</strong> Number of free variables = $n - rank(A)$[cite: 540, 606].</p>
-    </div>
+            
+            <h3>Non-Homogeneous Part ($y_p$)</h3>
+            <p>The general solution is $y = y_c + y_p$[cite: 152]. Use the method of undetermined coefficients for $y_p$ based on $g(x)$[cite: 155, 157]:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>$g(x)$ Form</th>
+                        <th>Trial $y_p$ Guess</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Constant (1)</td><td>$A$</td></tr>
+                    <tr><td>$5x+7$</td><td>$Ax+B$</td></tr>
+                    <tr><td>$\sin 4x$ / $\cos 4x$</td><td>$A \cos 4x + B \sin 4x$</td></tr>
+                    <tr><td>$e^{5x}$</td><td>$Ae^{5x}$</td></tr>
+                </tbody>
+            </table>
+        </section>
 
-    <div class="section">
-        <h2>3. Matrix Transformations</h2>
-        [cite_start]<p>Transformations map a vector $x$ to $w$ using $T(x) = Ax$[cite: 667, 674].</p>
-        [cite_start]<h3>Common 2D Matrices [cite: 714, 870]</h3>
-        <ul>
-            [cite_start]<li><strong>Reflection about x-axis:</strong> $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ [cite: 874]</li>
-            [cite_start]<li><strong>Reflection about y-axis:</strong> $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$ [cite: 876]</li>
-            [cite_start]<li><strong>Reflection about $y=x$:</strong> $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ [cite: 879]</li>
-            [cite_start]<li><strong>Enlargement (Scale factor $k$):</strong> $\begin{bmatrix} k & 0 \\ 0 & k \end{bmatrix}$ [cite: 884]</li>
-            [cite_start]<li><strong>Rotation (Anticlockwise $\theta$):</strong> $\begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix}$ [cite: 714]</li>
-        </ul>
-    </div>
+        <section id="rank" class="card">
+            <h2>2. Linear Systems and Matrix Rank</h2>
+            <p>Analyze $Ax = b$ by comparing $rank(A)$ and $rank([A|b])$ [cite: 521, 907-911].</p>
+            
+            <div class="formula-box">
+                • <b>Inconsistent:</b> $rank(A) \neq rank([A|b])$[cite: 524, 912].<br>
+                • <b>Unique:</b> $rank(A) = rank([A|b]) = n$[cite: 531, 917].<br>
+                • <b>Infinite:</b> $rank(A) = rank([A|b]) < n$[cite: 535, 915].
+            </div>
+            
+                    </section>
 
-    <div class="section">
-        <h2>4. Eigenvalues and Eigenvectors</h2>
-        <ul>
-            [cite_start]<li>Find eigenvalues by solving the characteristic equation: $\det(A - \lambda I) = 0$[cite: 129].</li>
-            [cite_start]<li><strong>Relationship:</strong> $tr(A)$ equals the sum of eigenvalues, and $det(A)$ equals the product of eigenvalues[cite: 135].</li>
-        </ul>
-    </div>
+        <section id="transform" class="card">
+            <h2>3. Matrix Transformations</h2>
+            <p>Standard matrices for mapping $T: \mathbb{R}^2 \to \mathbb{R}^2$ [cite: 714, 870-884].</p>
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Standard Matrix</th>
+                </tr>
+                <tr><td>Reflect x-axis</td><td>[1, 0; 0, -1]</td></tr>
+                <tr><td>Reflect y-axis</td><td>[-1, 0; 0, 1]</td></tr>
+                <tr><td>Rotation 90° CCW</td><td>[0, -1; 1, 0]</td></tr>
+                <tr><td>Enlargement (k)</td><td>[k, 0; 0, k]</td></tr>
+            </table>
+        </section>
 
-    <p><em>Would you like me to solve a specific problem from the review sheet using these methods?</em></p>
+        <section id="eigen" class="card">
+            <h2>4. Eigenvalues & Eigenvectors</h2>
+            <p>Find $\lambda$ by solving $\det(A - \lambda I) = 0$[cite: 129, 134].</p>
+            <ul>
+                <li>$tr(A) = \sum \lambda_i$[cite: 135].</li>
+                <li>$\det(A) = \prod \lambda_i$[cite: 135].</li>
+            </ul>
+        </section>
+    </main>
 
 </body>
 </html>

@@ -137,54 +137,95 @@
       $A^{-1} = \begin{bmatrix} -40 & 16 & 9 \\ 13 & -5 & -3 \\ 5 & -2 & -1 \end{bmatrix}$ [cite: 109]
     </div>
   </section>
-<section class="card">
-    <h2>4. Finding the Infinite Solutions (Problem 6)</h2>
-    <p>Based on the rank analysis ($\text{rank} < n$), we determined the system has infinitely many solutions. Here is the procedure to express them using parameters.</p>
+<h1>Problem 6: Complete Solution</h1>
+  <p>Detailed breakdown of Rank Analysis and finding the General Solution for the given system.</p>
 
-    <h3>Step 1: Recall the Reduced Row Echelon Form (RREF)</h3>
-    <p>From the previous row operations, the augmented matrix simplified to:</p>
-    $$[A|b] = \begin{bmatrix} 
-    1 & 1 & 2 & | & 1 \\ 
-    0 & 0 & 0 & | & 0 \\ 
-    0 & 0 & 0 & | & 0 
-    \end{bmatrix}$$
+  <section class="card">
+    <h2>Part 1: Rank Analysis & Consistency</h2>
+    <p><strong>Given System:</strong></p>
+    $$A = \begin{bmatrix} 1 & 1 & 2 \\ 2 & 2 & 4 \\ 3 & 3 & 6 \end{bmatrix}, \quad b = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$$
 
-    <h3>Step 2: Write the Equation</h3>
-    <p>The only surviving non-zero row gives us a single equation:</p>
-    $$x + y + 2z = 1$$
-    
+    <div class="step-box">
+        <h3>Step 1: Row Reduction to REF</h3>
+        <p>We form the augmented matrix $[A|b]$ and perform row operations to zero out the entries below the first pivot.</p>
+        
+        <p><strong>Initial Matrix:</strong></p>
+        $$[A|b] = \begin{bmatrix} 1 & 1 & 2 & | & 1 \\ 2 & 2 & 4 & | & 2 \\ 3 & 3 & 6 & | & 3 \end{bmatrix}$$
 
-    <h3>Step 3: Identify Variables</h3>
-    <div class="concept-box">
+        <p><strong>Operations:</strong></p>
         <ul>
-            <li><strong>Pivot Variable ($x$):</strong> Corresponds to the leading "1" in the first column.</li>
-            <li><strong>Free Variables ($y, z$):</strong> Correspond to columns without leading "1"s.</li>
+            <li>$R_2 \to R_2 - 2R_1$</li>
+            <li>$R_3 \to R_3 - 3R_1$</li>
+        </ul>
+
+        <p><strong>Calculation:</strong></p>
+        <ul>
+            <li>Row 2: $[2-2, 2-2, 4-4 \mid 2-2] \to [0, 0, 0 \mid 0]$</li>
+            <li>Row 3: $[3-3, 3-3, 6-6 \mid 3-3] \to [0, 0, 0 \mid 0]$</li>
+        </ul>
+
+        <p><strong>Resulting Matrix (REF):</strong></p>
+        $$\begin{bmatrix} 1 & 1 & 2 & | & 1 \\ 0 & 0 & 0 & | & 0 \\ 0 & 0 & 0 & | & 0 \end{bmatrix}$$
+    </div>
+
+    <div class="step-box">
+        <h3>Step 2: Determine Ranks</h3>
+        <ul>
+            <li><strong>rank(A):</strong> Number of non-zero rows in $A$ part = <strong>1</strong>.</li>
+            <li><strong>rank([A|b]):</strong> Number of non-zero rows in total matrix = <strong>1</strong>.</li>
+            <li><strong>n (Unknowns):</strong> Variables $x, y, z$ = <strong>3</strong>.</li>
         </ul>
     </div>
 
-    <h3>Step 4: Solve in Parametric Form</h3>
-    <p>We assign arbitrary parameters to the free variables (where $s, t \in \mathbb{R}$):</p>
-    <ul>
-        <li>Let $y = s$</li>
-        <li>Let $z = t$</li>
-    </ul>
-    <p>Now, rearrange the equation from Step 2 to solve for the pivot variable $x$:</p>
-    $$x = 1 - y - 2z$$
-    $$x = 1 - s - 2t$$
+    <div class="result-box">
+        <h3>Conclusion on Consistency</h3>
+        <p>Since $\text{rank}(A) = \text{rank}([A|b]) = 1$, the system is <strong>Consistent</strong>.</p>
+        <p>Since the rank ($r=1$) is less than the number of unknowns ($n=3$), there are:</p>
+        $$n - r = 3 - 1 = 2 \text{ Free Variables}$$
+        <p><strong>Result: Infinitely Many Solutions.</strong></p>
+    </div>
+  </section>
 
-    <h3>Step 5: Final Solution Vector</h3>
-    <p>Combine the components into a single vector, then decompose it to separate the constants and parameters:</p>
-    
-    <div class="formula-box">
-        <strong>General Solution:</strong>
-        $$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = 
-        \begin{bmatrix} 1 - s - 2t \\ s \\ t \end{bmatrix}$$
+  <section class="card">
+    <h2>Part 2: Finding the General Solution</h2>
+    <p>We now solve for the variables using the Reduced Row Echelon Form found above.</p>
+
+    <div class="step-box">
+        <h3>Step 3: Write the Equation</h3>
+        <p>From the first row $[1 \quad 1 \quad 2 \quad | \quad 1]$, we get:</p>
+        $$x + y + 2z = 1$$
+    </div>
+
+    <div class="step-box">
+        <h3>Step 4: Identify Variables & Parametrize</h3>
+        <p><strong>Pivot Variable:</strong> $x$ (Leading 1)</p>
+        <p><strong>Free Variables:</strong> $y, z$ (No pivots)</p>
         
-        <br><strong>Vector Decomposition:</strong>
+        <p>Assign parameters to free variables (where $s, t \in \mathbb{R}$):</p>
+        <ul>
+            <li>$y = s$</li>
+            <li>$z = t$</li>
+        </ul>
+    </div>
+
+    <div class="step-box">
+        <h3>Step 5: Solve for Pivot Variable</h3>
+        <p>Rearrange the equation from Step 3:</p>
+        $$x = 1 - y - 2z$$
+        <p>Substitute the parameters:</p>
+        $$x = 1 - s - 2t$$
+    </div>
+
+    <div class="result-box">
+        <h3>Final Solution Vector</h3>
+        <p>The general solution is:</p>
+        $$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 1 - s - 2t \\ s \\ t \end{bmatrix}$$
+
+        <p><strong>Decomposed Vector Form:</strong></p>
         $$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = 
-        \underbrace{\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}}_{\text{Particular Sol.}} + 
-        s \underbrace{\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}}_{\text{Basis Vector 1}} + 
-        t \underbrace{\begin{bmatrix} -2 \\ 0 \\ 1 \end{bmatrix}}_{\text{Basis Vector 2}}$$
+        \underbrace{\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}}_{\text{Particular}} + 
+        s \underbrace{\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}}_{\text{Basis 1}} + 
+        t \underbrace{\begin{bmatrix} -2 \\ 0 \\ 1 \end{bmatrix}}_{\text{Basis 2}}$$
     </div>
   </section>
   

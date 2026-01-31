@@ -16,14 +16,16 @@
   <style>
     :root {
       --primary: #2563eb;
+      --secondary: #475569;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text: #0f172a;
       --border: #e2e8f0;
+      --highlight: #eff6ff;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       line-height: 1.6;
       color: var(--text);
       background-color: var(--bg);
@@ -45,33 +47,64 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 1rem;
-      padding: 2rem;
+      padding: 2.5rem;
       margin-bottom: 2rem;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
 
-    h1 { font-size: 2.25rem; margin-bottom: 0.5rem; }
+    h1 { font-size: 2.25rem; margin-bottom: 0.5rem; color: #1e293b; }
     h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-top: 0; }
-    h3 { margin-top: 1.5rem; color: #1e40af; }
-    
-    .formula-box {
-      background: #eef2ff;
-      border-left: 6px solid var(--primary);
+    h3 { margin-top: 2rem; color: #1e40af; font-size: 1.4rem; }
+    h4 { margin-top: 1rem; color: #334155; font-size: 1.1rem; }
+
+    .concept-box {
+      background: var(--highlight);
+      border: 1px solid #bfdbfe;
+      border-radius: 0.5rem;
       padding: 1.5rem;
-      margin: 1.5rem 0;
-      border-radius: 0 10px 10px 0;
+      margin: 1rem 0;
     }
 
-    .topic-tag {
-      display: inline-block;
-      background: #dbeafe;
-      color: #1e40af;
-      padding: 2px 10px;
-      border-radius: 9999px;
-      font-size: 0.8rem;
+    .step-box {
+      background: #fdf2f8; /* Pinkish for distinct steps */
+      border-left: 4px solid #db2777;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .solution-box {
+      background: #f0fdf4; /* Greenish for final answer */
+      border: 1px solid #86efac;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
       font-weight: bold;
+      color: #166534;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 600;
       margin-bottom: 1rem;
     }
+    
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+    }
+    .comparison-table th, .comparison-table td {
+        border: 1px solid var(--border);
+        padding: 1rem;
+        text-align: left;
+    }
+    .comparison-table th { background: #f1f5f9; }
   </style>
 </head>
 <body>
@@ -79,50 +112,138 @@
 <div class="container">
   <a href="index.html" class="back-btn">← Back to Main Guide</a>
   
-  <h1>Ordinary Differential Equations (ODEs)</h1>
-  <p>How to build a General Solution based on characteristic roots ($m$).</p>
+  <h1>ODE General Solutions</h1>
+  <p>Detailed breakdown of Homogeneous vs. Non-homogeneous equations and the Problem 13 worksheet solutions.</p>
 
   <section class="card">
-    <h2>1. The Construction Rules</h2>
-    <p>The general solution $y$ is formed by summing the contributions of each root:</p>
+    <h2>1. The Basics: Homogeneous vs. Non-homogeneous</h2>
+    <p>Before solving, you must identify if the equation equals zero or a function $g(x)$.</p>
+
+    <div class="concept-box">
+        <h3>Use this Logic:</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Standard Form</th>
+                    <th>Goal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Homogeneous</strong></td>
+                    <td>$ay'' + by' + cy = 0$</td>
+                    <td>Find <strong>Complementary Function ($y_c$)</strong> using roots ($m$) of the characteristic equation[cite: 162].</td>
+                </tr>
+                <tr>
+                    <td><strong>Non-homogeneous</strong></td>
+                    <td>$ay'' + by' + cy = g(x)$</td>
+                    <td>Find <strong>General Solution ($y$)</strong> by adding $y_c$ (from LHS) + Particular Solution $y_p$ (from RHS)[cite: 474].</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Key Formula:</strong> For non-homogeneous equations, the final answer is always:</p>
+        $$y(x) = y_c(x) + y_p(x)$$
+    </div>
+
+    <h4>How to build $y_c$ from Roots ($m$):</h4>
     <ul>
-      <li><strong>Rule 1: Distinct Real Roots ($m$)</strong><br>Each root gives: $c \cdot e^{mx}$</li>
-      <li><strong>Rule 2: Repeated Real Roots ($m$ appearing $k$ times)</strong><br>Gives: $(c_1 + c_2x + \dots + c_kx^{k-1})e^{mx}$</li>
-      <li><strong>Rule 3: Complex Conjugate Roots ($\alpha \pm i\beta$)</strong><br>Gives: $e^{\alpha x}(c_A \cos \beta x + c_B \sin \beta x)$</li>
+      <li><strong>Distinct Real Roots ($m_1 \neq m_2$):</strong> $y_c = c_1 e^{m_1 x} + c_2 e^{m_2 x}$ [cite: 165]</li>
+      <li><strong>Repeated Real Roots ($m_1 = m_2 = m$):</strong> $y_c = c_1 e^{mx} + c_2 x e^{mx}$ [cite: 166]</li>
+      <li><strong>Complex Roots ($\alpha \pm i\beta$):</strong> $y_c = e^{\alpha x}(c_1 \cos \beta x + c_2 \sin \beta x)$ [cite: 172]</li>
     </ul>
-    
   </section>
 
   <section class="card">
-    <h2>2. Worksheet Solutions (Prob 13)</h2>
+    <h2>2. Detailed Solutions for Problem 13</h2>
+    <p>Below are the step-by-step constructions for the roots given in the Review Sheet [cite: 68-71].</p>
 
-    <span class="topic-tag">Covers: Repeated + Distinct Roots</span>
-    <h3>Problem 13.i: Roots are $3, 3, -5$</h3>
-    <div class="formula-box">
-      <strong>Step 1:</strong> Handle repeated root $3$. It repeats twice, so: $(c_1 + c_2x)e^{3x}$.<br>
-      <strong>Step 2:</strong> Handle distinct root $-5$. It gives: $c_3e^{-5x}$.<br><br>
-      <strong>General Solution:</strong><br>
-      $y = (c_1 + c_2x)e^{3x} + c_3e^{-5x}$
+    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 2rem 0;">
+    <span class="tag">Problem 13.i</span>
+    <h3>Roots: $3, 3, -5$</h3>
+    
+    <div class="step-box">
+        <strong>Step 1: Analyze Repeated Roots ($3, 3$)</strong><br>
+        The root $m=3$ appears twice.
+        <ul>
+            <li>First occurrence contributes: $c_1 e^{3x}$</li>
+            <li>Second occurrence (multiply by $x$): $c_2 x e^{3x}$</li>
+            <li>Combined term: $(c_1 + c_2 x)e^{3x}$</li>
+        </ul>
     </div>
 
-    <span class="topic-tag">Covers: Repeated + Complex Roots</span>
-    <h3>Problem 13.ii: Roots are $3, 3$ and $1 \pm i\sqrt{3}$</h3>
-    <div class="formula-box">
-      <strong>Step 1:</strong> Handle repeated root $3$. It gives: $(c_1 + c_2x)e^{3x}$.<br>
-      <strong>Step 2:</strong> Handle complex roots $1 \pm i\sqrt{3}$. Here, $\alpha = 1$ and $\beta = \sqrt{3}$.<br>
-      It gives: $e^{1x}(c_3 \cos \sqrt{3}x + c_4 \sin \sqrt{3}x)$.<br><br>
-      <strong>General Solution:</strong><br>
-      $y = (c_1 + c_2x)e^{3x} + e^{x}(c_3 \cos \sqrt{3}x + c_4 \sin \sqrt{3}x)$
+    <div class="step-box">
+        <strong>Step 2: Analyze Distinct Root ($-5$)</strong><br>
+        The root $m=-5$ appears once.
+        <ul>
+            <li>Contribution: $c_3 e^{-5x}$</li>
+        </ul>
     </div>
 
-    <span class="topic-tag">Covers: All Three Rule Types Combined</span>
-    <h3>Problem 13.iii: Roots are $-3, -3$, $1 \pm i\sqrt{3}$, and $3$</h3>
-    <div class="formula-box">
-      <strong>1. Repeated Roots (-3, -3):</strong> $(c_1 + c_2x)e^{-3x}$<br>
-      <strong>2. Complex Roots ($1 \pm i\sqrt{3}$):</strong> $e^{x}(c_3 \cos \sqrt{3}x + c_4 \sin \sqrt{3}x)$<br>
-      <strong>3. Distinct Root (3):</strong> $c_5e^{3x}$<br><br>
-      <strong>General Solution:</strong><br>
-      $y = (c_1 + c_2x)e^{-3x} + e^{x}(c_3 \cos \sqrt{3}x + c_4 \sin \sqrt{3}x) + c_5e^{3x}$
+    <div class="solution-box">
+        Final General Solution:<br>
+        $$y = c_1 e^{3x} + c_2 x e^{3x} + c_3 e^{-5x}$$
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 2rem 0;">
+    <span class="tag">Problem 13.ii</span>
+    <h3>Roots: $3, 3, 1 \pm i\sqrt{3}$</h3>
+
+    <div class="step-box">
+        <strong>Step 1: Analyze Repeated Roots ($3, 3$)</strong><br>
+        Just like above, the repeated root $3$ requires an $x$ term.
+        <ul>
+            <li>Contribution: $(c_1 + c_2 x)e^{3x}$</li>
+        </ul>
+    </div>
+
+    <div class="step-box">
+        <strong>Step 2: Analyze Complex Roots ($1 \pm i\sqrt{3}$)</strong><br>
+        Identify parts: Real part $\alpha = 1$, Imaginary part $\beta = \sqrt{3}$.<br>
+        Formula: $e^{\alpha x}(A \cos \beta x + B \sin \beta x)$
+        <ul>
+            <li>Contribution: $e^{1x}(c_3 \cos \sqrt{3}x + c_4 \sin \sqrt{3}x)$</li>
+        </ul>
+    </div>
+
+    <div class="solution-box">
+        Final General Solution:<br>
+        $$y = (c_1 + c_2 x)e^{3x} + e^{x}(c_3 \cos \sqrt{3}x + c_4 \sin \sqrt{3}x)$$
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 2rem 0;">
+    <span class="tag">Problem 13.iii</span>
+    <h3>Roots: $-3, -3, 1, 1 \pm i\sqrt{3}, 3$</h3>
+    <p><em>Note: This solution includes all roots listed in the Review Sheet text: "-3,-3, 1, 1±i√3 and 3"[cite: 71].</em></p>
+
+    <div class="step-box">
+        <strong>Step 1: Repeated Roots ($-3, -3$)</strong><br>
+        Root $-3$ repeats.
+        <ul>
+            <li>Contribution: $(c_1 + c_2 x)e^{-3x}$</li>
+        </ul>
+    </div>
+
+    <div class="step-box">
+        <strong>Step 2: Distinct Real Roots ($1$ and $3$)</strong><br>
+        These are standard distinct roots.
+        <ul>
+            <li>For $m=1$: $c_3 e^{1x}$</li>
+            <li>For $m=3$: $c_4 e^{3x}$</li>
+        </ul>
+    </div>
+
+    <div class="step-box">
+        <strong>Step 3: Complex Pair ($1 \pm i\sqrt{3}$)</strong><br>
+        $\alpha = 1, \beta = \sqrt{3}$.
+        <ul>
+            <li>Contribution: $e^{x}(c_5 \cos \sqrt{3}x + c_6 \sin \sqrt{3}x)$</li>
+        </ul>
+    </div>
+
+    <div class="solution-box">
+        Final General Solution:<br>
+        $$y = \underbrace{(c_1 + c_2 x)e^{-3x}}_{\text{Repeated -3}} + \underbrace{c_3 e^{x} + c_4 e^{3x}}_{\text{Distinct 1 & 3}} + \underbrace{e^{x}(c_5 \cos \sqrt{3}x + c_6 \sin \sqrt{3}x)}_{\text{Complex}}$$
     </div>
   </section>
 </div>

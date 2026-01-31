@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eigen-Analysis | Math 183 Study Portal</title>
+  
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+      chtml: { scale: 1.1 }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    h1 { font-size: 2.25rem; margin-bottom: 0.5rem; }
+    h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-top: 0; }
+    h3 { margin-top: 1.5rem; color: #1e40af; }
+    
+    .formula-box {
+      background: #eef2ff;
+      border-left: 6px solid var(--primary);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 10px 10px 0;
+      text-align: center;
+    }
+
+    .step-box {
+      background: #f1f5f9;
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+      border-left: 5px solid #64748b;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .math-highlight { color: #1e40af; font-weight: bold; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" class="back-btn">← Back to Main Guide</a>
+  
+  <h1>Eigenvalues & Eigenvectors</h1>
+  <p>Understanding the characteristic properties of square matrices.</p>
+
+  <section class="card">
+    <h2>1. The Basics: What are they?</h2>
+    <p>In German, <i>"eigen"</i> means "characteristic" or "own." These values and vectors reveal the internal structure of a matrix transformation.</p>
+    
+    <div class="formula-box">
+      <strong style="font-size: 1.2rem;">The Fundamental Equation:</strong><br>
+      <p style="font-size: 2rem; margin: 10px 0;">$Av = \lambda v$</p>
+    </div>
+
+    <ul>
+      <li><strong>Eigenvector ($v$):</strong> A non-zero vector that does not change its direction when multiplied by matrix $A$. It stays on the same line.</li>
+      <li><strong>Eigenvalue ($\lambda$):</strong> The scale factor. It tells you if the eigenvector was stretched ($\lambda > 1$), squashed ($\lambda < 1$), or reversed ($\lambda < 0$).</li>
+    </ul>
+    
+  </section>
+
+  <section class="card">
+    <h2>2. Worked Example: Problem 25</h2>
+    <p>Find the eigenvalues and eigenvectors for $A = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$.</p>
+    
+    <h3>Part A: Find Eigenvalues ($\lambda$)</h3>
+    <p>We solve the <b>Characteristic Equation</b>: $\det(A - \lambda I) = 0$.</p>
+    
+    <div class="step-box">
+      $\det \begin{bmatrix} 1-\lambda & 2 \\ 2 & 4-\lambda \end{bmatrix} = 0$<br><br>
+      $(1-\lambda)(4-\lambda) - (2 \cdot 2) = 0$<br>
+      $\lambda^2 - 5\lambda + 4 - 4 = 0$<br>
+      $\lambda^2 - 5\lambda = 0 \implies \lambda(\lambda - 5) = 0$<br><br>
+      <span class="math-highlight">Eigenvalues: $\lambda_1 = 5, \lambda_2 = 0$</span>
+    </div>
+    
+
+    <h3>Part B: Find Eigenvectors ($v$)</h3>
+    <p>For each $\lambda$, solve the system $(A - \lambda I)v = 0$.</p>
+
+    <div class="step-box">
+      <strong>Case 1: For $\lambda = 5$</strong><br>
+      $\begin{bmatrix} 1-5 & 2 \\ 2 & 4-5 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} \implies \begin{bmatrix} -4 & 2 \\ 2 & -1 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$<br><br>
+      From Row 2: $2x - y = 0 \implies y = 2x$.<br>
+      Let $x=1$, then $y=2$.<br>
+      <span class="math-highlight">Eigenvector $v_1 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$</span>
+    </div>
+
+    <div class="step-box">
+      <strong>Case 2: For $\lambda = 0$</strong><br>
+      $\begin{bmatrix} 1-0 & 2 \\ 2 & 4-0 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} \implies \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$<br><br>
+      From Row 1: $x + 2y = 0 \implies x = -2y$.<br>
+      Let $y=1$, then $x=-2$.<br>
+      <span class="math-highlight">Eigenvector $v_2 = \begin{bmatrix} -2 \\ 1 \end{bmatrix}$</span>
+    </div>
+    
+  </section>
+</div>
+
+</body>
+</html>

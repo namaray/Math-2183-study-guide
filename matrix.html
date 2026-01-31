@@ -137,6 +137,57 @@
       $A^{-1} = \begin{bmatrix} -40 & 16 & 9 \\ 13 & -5 & -3 \\ 5 & -2 & -1 \end{bmatrix}$ [cite: 109]
     </div>
   </section>
+<section class="card">
+    <h2>4. Finding the Infinite Solutions (Problem 6)</h2>
+    <p>Based on the rank analysis ($\text{rank} < n$), we determined the system has infinitely many solutions. Here is the procedure to express them using parameters.</p>
+
+    <h3>Step 1: Recall the Reduced Row Echelon Form (RREF)</h3>
+    <p>From the previous row operations, the augmented matrix simplified to:</p>
+    $$[A|b] = \begin{bmatrix} 
+    1 & 1 & 2 & | & 1 \\ 
+    0 & 0 & 0 & | & 0 \\ 
+    0 & 0 & 0 & | & 0 
+    \end{bmatrix}$$
+
+    <h3>Step 2: Write the Equation</h3>
+    <p>The only surviving non-zero row gives us a single equation:</p>
+    $$x + y + 2z = 1$$
+    
+
+    <h3>Step 3: Identify Variables</h3>
+    <div class="concept-box">
+        <ul>
+            <li><strong>Pivot Variable ($x$):</strong> Corresponds to the leading "1" in the first column.</li>
+            <li><strong>Free Variables ($y, z$):</strong> Correspond to columns without leading "1"s.</li>
+        </ul>
+    </div>
+
+    <h3>Step 4: Solve in Parametric Form</h3>
+    <p>We assign arbitrary parameters to the free variables (where $s, t \in \mathbb{R}$):</p>
+    <ul>
+        <li>Let $y = s$</li>
+        <li>Let $z = t$</li>
+    </ul>
+    <p>Now, rearrange the equation from Step 2 to solve for the pivot variable $x$:</p>
+    $$x = 1 - y - 2z$$
+    $$x = 1 - s - 2t$$
+
+    <h3>Step 5: Final Solution Vector</h3>
+    <p>Combine the components into a single vector, then decompose it to separate the constants and parameters:</p>
+    
+    <div class="formula-box">
+        <strong>General Solution:</strong>
+        $$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = 
+        \begin{bmatrix} 1 - s - 2t \\ s \\ t \end{bmatrix}$$
+        
+        <br><strong>Vector Decomposition:</strong>
+        $$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = 
+        \underbrace{\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}}_{\text{Particular Sol.}} + 
+        s \underbrace{\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}}_{\text{Basis Vector 1}} + 
+        t \underbrace{\begin{bmatrix} -2 \\ 0 \\ 1 \end{bmatrix}}_{\text{Basis Vector 2}}$$
+    </div>
+  </section>
+  
 </div>
 
 </body>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rank of Matrix Study Guide</title>
+  
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+      chtml: { scale: 1.1 }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #475569;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --border: #e2e8f0;
+      --highlight: #eff6ff;
+      --accent: #db2777;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      background: white;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: var(--highlight);
+      border-color: var(--primary);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    h1 { font-size: 2.25rem; margin-bottom: 0.5rem; color: #1e293b; }
+    h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-top: 0; }
+    h3 { margin-top: 2rem; color: #1e40af; font-size: 1.4rem; }
+    h4 { margin-top: 1rem; color: #334155; font-size: 1.1rem; }
+
+    .concept-box {
+      background: var(--highlight);
+      border: 1px solid #bfdbfe;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .formula-box {
+      background: #fdf2f8;
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .checklist-box {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+    }
+    th, td {
+        border: 1px solid var(--border);
+        padding: 1rem;
+        text-align: left;
+    }
+    th { background: #f1f5f9; font-weight: bold; }
+    
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <a href="index.html" class="back-btn">← Back to Index</a>
+
+  <h1>Rank of Matrix & Systems of Equations</h1>
+  <p>A study guide for determining system consistency using Rank arguments, based on the uploaded notes.</p>
+
+  <section class="card">
+    <h2>1. Core Definitions</h2>
+    <p>To analyze a system $Ax=b$, you must compare the ranks of two specific matrices.</p>
+    
+
+    <div class="concept-box">
+        <h3>Key Terms:</h3>
+        <ul>
+            <li><strong>Rank ($r$):</strong> The number of non-zero rows in the row echelon form of a matrix.</li>
+            <li><strong>$n$:</strong> The number of unknowns (variables) in the system.</li>
+            <li><strong>Coefficient Matrix ($A$):</strong> The matrix containing only the coefficients of variables.</li>
+            <li><strong>Augmented Matrix ($[A|b]$):</strong> The matrix $A$ with the constants vector $b$ attached as the last column.</li>
+        </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. Classification of Solutions</h2>
+    <p>Use Gaussian Elimination to find the rank, then apply these three cases to determine the nature of the solution.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Case</th>
+                <th>Rank Condition</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Inconsistent</strong></td>
+                <td>$\text{rank}(A) \neq \text{rank}([A|b])$</td>
+                <td><strong>No Solution</strong>. <br><em>(Usually occurs when a row reduces to $0=c$ where $c \neq 0$)</em></td>
+            </tr>
+            <tr>
+                <td><strong>Consistent (Unique)</strong></td>
+                <td>$\text{rank}(A) = \text{rank}([A|b]) = n$</td>
+                <td><strong>Unique Solution</strong>. <br><em>(Number of independent equations equals number of variables)</em></td>
+            </tr>
+            <tr>
+                <td><strong>Consistent (Infinite)</strong></td>
+                <td>$\text{rank}(A) = \text{rank}([A|b]) < n$</td>
+                <td><strong>Infinitely Many Solutions</strong>. <br><em>(There are $n - r$ free variables)</em>.</td>
+            </tr>
+        </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>3. Worked Examples & Analysis</h2>
+    
+    <div class="formula-box">
+        <h3>Example A: Finding Consistency (Problem 7)</h3>
+        <p><strong>System:</strong> Last row reduces to $[0 \quad 0 \quad 0 \mid k-3]$. <br>
+           <strong>Goal:</strong> Find $k$ for consistency.</p>
+        
+        <p><strong>Analysis:</strong></p>
+        <ul>
+            <li>Rank of $A$ is 1 (from previous rows).</li>
+            <li>For consistency, we need $\text{rank}([A|b])$ to also be 1.</li>
+            <li>This requires the last term to be zero: $k-3 = 0 \implies k=3$.</li>
+        </ul>
+        <p><strong>Conclusion:</strong></p>
+        <ul>
+            <li>If $k=3$: Consistent. Since $r=1$ and $n=3$, there are infinite solutions ($3-1=2$ free variables).</li>
+            <li>If $k \neq 3$: Inconsistent (No solution).</li>
+        </ul>
+    </div>
+
+    <div class="formula-box">
+        <h3>Example B: Parameter Analysis (Problem 8)</h3>
+        <p><strong>System:</strong> Last row reduces to $[0 \quad 0 \quad 4-a \mid 1]$. <br>
+           <strong>Goal:</strong> Classify based on $a$.</p>
+
+        <p><strong>1. No Solution ($a=4$):</strong><br>
+        If $a=4$, the row becomes $[0 \quad 0 \quad 0 \mid 1]$. <br>
+        This means $0 = 1$, which is impossible. <br>
+        $\text{rank}(A)=2 \neq \text{rank}([A|b])=3$.</p>
+
+        <p><strong>2. Unique Solution ($a \neq 4$):</strong><br>
+        If $a \neq 4$, the term $(4-a)$ is non-zero. <br>
+        Rank is 3, and $n=3$. Since $r=n$, the solution is unique.</p>
+
+        <p><strong>3. Infinite Solutions (Never):</strong><br>
+        To have infinite solutions, we need a row of all zeros $(0=0)$. <br>
+        However, the augmented part is always $1$. We can never get $0=0$ in the last row, so this case is impossible.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4. Summary Checklist</h2>
+    <div class="checklist-box">
+        <ul>
+            <li>✅ <strong>Form Augmented Matrix:</strong> Write $[A|b]$.</li>
+            <li>✅ <strong>Row Reduce:</strong> Get it into Row Echelon Form.</li>
+            <li>✅ <strong>Count Non-Zero Rows:</strong> Find $\text{rank}(A)$ (left side) and $\text{rank}([A|b])$ (whole matrix).</li>
+            <li>✅ <strong>Compare:</strong>
+                <ul>
+                    <li>Different ranks? $\to$ <strong>No Solution</strong>.</li>
+                    <li>Same rank ($r$) equals $n$? $\to$ <strong>Unique</strong>.</li>
+                    <li>Same rank ($r$) less than $n$? $\to$ <strong>Infinite</strong> ($n-r$ free variables).</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

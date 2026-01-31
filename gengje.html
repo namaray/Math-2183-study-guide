@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaussian vs. Gauss-Jordan Elimination</title>
+  
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+      chtml: { scale: 1.1 }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #475569;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --border: #e2e8f0;
+      --highlight: #eff6ff;
+      --accent: #8b5cf6; /* Violet accent for this topic */
+      --success: #10b981;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      background: white;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: var(--highlight);
+      border-color: var(--primary);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    h1 { font-size: 2.25rem; margin-bottom: 0.5rem; color: #1e293b; }
+    h2 { color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-top: 2rem; }
+    h3 { margin-top: 1.5rem; color: #1e40af; font-size: 1.3rem; }
+
+    .matrix-display {
+      background: #fdf2f8; /* Light pink/purple bg */
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+      overflow-x: auto;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: left;
+    }
+    .comparison-table th { background: #f1f5f9; font-weight: bold; }
+    .comparison-table tr:hover { background: #f8fafc; }
+
+    .note-box {
+      background: var(--highlight);
+      border: 1px solid #bfdbfe;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    
+    .process-step {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 3px solid #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <a href="index.html" class="back-btn">← Back to Index</a>
+
+  <h1>Gaussian vs. Gauss-Jordan Elimination</h1>
+  <p>A comparative guide to the two fundamental algorithms for solving linear systems.</p>
+
+  <section class="card">
+    <h2>1. Gaussian Elimination</h2>
+    <p><strong>Goal:</strong> Transform the matrix into <strong>Row Echelon Form (REF)</strong>.</p>
+    <p>This method stops "halfway" through the reduction process. Once the matrix is in REF, you solve the system using <strong>Back-Substitution</strong>.</p>
+
+    <div class="matrix-display">
+      <strong>Target: Row Echelon Form (REF)</strong><br>
+      $$ \begin{bmatrix} 
+      1 & * & * & | & * \\ 
+      0 & 1 & * & | & * \\ 
+      0 & 0 & 1 & | & * \end{bmatrix} $$
+      <em>(The $*$ represents any number. Zeros are only required below the main diagonal.)</em>
+    </div>
+
+    <h3>The Process</h3>
+    <div class="process-step">
+      <strong>Step 1: Forward Elimination</strong><br>
+      Use row operations to create zeros <em>below</em> the pivots (leading 1s) starting from the first column.
+    </div>
+    <div class="process-step">
+      <strong>Step 2: Back-Substitution</strong><br>
+      Convert the final matrix back into equations. Solve for the last variable ($z$), substitute it into the previous equation to find $y$, and so on.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. Gauss-Jordan Elimination</h2>
+    <p><strong>Goal:</strong> Transform the matrix into <strong>Reduced Row Echelon Form (RREF)</strong>.</p>
+    <p>This method continues the reduction until the variable values can be "read" directly from the matrix without any further algebra.</p>
+
+    <div class="matrix-display">
+      <strong>Target: Reduced Row Echelon Form (RREF)</strong><br>
+      $$ \begin{bmatrix} 
+      1 & 0 & 0 & | & a \\ 
+      0 & 1 & 0 & | & b \\ 
+      0 & 0 & 1 & | & c 
+      \end{bmatrix} $$
+      <em>(The solution is immediately visible: $x=a, y=b, z=c$.)</em>
+    </div>
+
+    <h3>The Process</h3>
+    <div class="process-step">
+      <strong>Step 1: Forward Elimination</strong><br>
+      Same as Gaussian Elimination. Get zeros below the pivots.
+    </div>
+    <div class="process-step">
+      <strong>Step 2: Normalize Pivots</strong><br>
+      Ensure every pivot is exactly equal to 1 (divide the row by the pivot value).
+    </div>
+    <div class="process-step">
+      <strong>Step 3: Backward Elimination</strong><br>
+      Use row operations to create zeros <em>above</em> the pivots as well. This isolates the variable in each column.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3. Comparison & Differences</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Gaussian Elimination</th>
+          <th>Gauss-Jordan Elimination</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Final Matrix Form</strong></td>
+          <td>Row Echelon Form (REF)<br><em>(Upper Triangular)</em></td>
+          <td>Reduced Row Echelon Form (RREF)<br><em>(Diagonal/Identity)</em></td>
+        </tr>
+        <tr>
+          <td><strong>Operations</strong></td>
+          <td>Zeros <strong>below</strong> diagonal only.</td>
+          <td>Zeros <strong>below AND above</strong> diagonal.</td>
+        </tr>
+        <tr>
+          <td><strong>Next Step</strong></td>
+          <td>Requires Back-Substitution.</td>
+          <td>Solution is immediate.</td>
+        </tr>
+        <tr>
+          <td><strong>Efficiency</strong></td>
+          <td><strong>More Efficient</strong> (approx 50% fewer operations). Preferred for computers.</td>
+          <td><strong>Less Efficient</strong>. Preferred for hand calculation or finding Inverses.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <strong>Key Takeaway:</strong> Gaussian Elimination is faster computationally, but requires an extra algebra step at the end. Gauss-Jordan takes longer to reduce the matrix but gives the answer explicitly.
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
